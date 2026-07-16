@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetospring.entity.Usuario;
@@ -49,6 +50,12 @@ public class ControllerUsuario {
 		} catch (Exception ex) {
 			return ResponseEntity.badRequest().body(null);
 		}
+	}
+
+	@GetMapping(value = "usuario/filtro")
+	public ResponseEntity<List<Usuario>> findByEmail(@RequestParam("email") String email) {
+		List<Usuario> listagem = dao.findByEmailContainingIgnoreCase(email);
+		return ResponseEntity.ok(listagem);
 	}
 
 	@PutMapping(value = "usuario")
