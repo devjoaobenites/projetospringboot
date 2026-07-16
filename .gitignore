@@ -1,0 +1,10 @@
+target/
+*.class
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Credenciais locais - nunca commitar
+application-local.properties
